@@ -1,0 +1,47 @@
+theSearch.cshtml
+{
+	@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <title>Search</title>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script>
+        function Search() {
+            if ($("#Data").val() !== "")
+                $.ajax({
+                    url: "Search",
+                    type: "get",
+                    data: { Data: $("#Data").val() },
+                    success: function (Data) {
+                        if (Data !== "0")
+                            window.location.href = "http://www.baidu.com.cn/s?wd=" + Data + "&cl=3";
+                        else
+                            alert("搜索内容已被和谐！");
+                    }
+                });
+            else
+                alert("搜索内容不能为空！");
+        }
+    </script>
+
+</head>
+<body>
+    <div>
+        <h1>Search</h1>
+    </div>
+            <div>
+                <input id="Data" type="text" placeholder="请输入要查询的内容" />
+            </div>
+            <div>
+                <input type="button" value="查询" onclick="Search()" />
+            </div>
+</body>
+</html>
+
+}
